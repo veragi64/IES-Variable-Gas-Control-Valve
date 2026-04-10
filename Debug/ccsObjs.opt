@@ -1,0 +1,7 @@
+"./RGBLED.obj"
+"./Sensors.obj"
+"./init_Servo.obj"
+"./main.obj"
+"../lnk_msp430fr2355.cmd"
+-lfrwp_init.a
+-llibc.a

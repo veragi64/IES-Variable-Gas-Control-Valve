@@ -1,0 +1,56 @@
+#include <msp430.h>
+
+
+
+void init_Sensors(){
+
+    P1SEL0 |= BIT5 | BIT3 | BIT6;         //Converting 1.5, 1.3, and 1.6 to analog mode
+    P1SEL1 |= BIT5 | BIT3 | BIT6;         // POT (1.5), Thermocouple (1.3), Thermistor (1.6) 
+
+    // NOTE:
+    // THIS SECTION OF CODE WAS PROGRAMED WITH THE HELP OF Notebook Lm
+    // CODE BLOCKS WILL BE GIVEN IN THE ENGINEERING NOTEBOOK FOR THIS GROUP
+
+    ADCCTL0 |= ADCSHT_2 | ADCON;          // 16 clock cycles for sampling; Turn ADC ON
+    ADCCTL1 |= ADCSHP;                    // Use the internal sampling timer
+    ADCCTL2 &= ~ADCRES;                   // Clear resolution settings
+    ADCCTL2 |= ADCRES_2; 
+
+    PM5CTL0 &= ~LOCKLPM5;                 // Disable High-Impedance mode, activate pins
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // NOTE:
+    // THIS SECTION OF CODE WAS PROGRAMED WITH THE HELP OF Notebook Lm
+    // CODE BLOCKS WILL BE GIVEN IN THE ENGINEERING NOTEBOOK FOR THIS GROUP
+}
+
+    unsigned int get_ADC_Result( unsigned int channel){
+        ADCCTL0 &= ~ADCENC;                // Pause the ADC when selecting channels
+        ADCMCTL0 = channel;                // Tells the ADC to look at a specific pin
+        ADCCTL0 |= ADCENC | ADCSC;         // This line of code "arms" the ADC, and then takes a reading
+
+        while(ADCCTL1 & ADCBUSY);          //Tell the ADC to Finish measuring the value before taking other readings
+
+        return ADCMEM0;                    // Return the 12 bit digital number
+
+
+
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // NOTE:
+    // THIS SECTION OF CODE WAS PROGRAMED WITH THE HELP OF Notebook Lm
+    // CODE BLOCKS WILL BE GIVEN IN THE ENGINEERING NOTEBOOK FOR THIS GROUP
+
+    unsigned int read_POT(){
+        return get_ADC_Result(ADCINCH_5);
+    }
+
+    unsigned int read_Thermocouple(){
+        return get_ADC_Result(ADCINCH_3);
+    }
+
+    unsigned int read_Thermistor(){
+        return get_ADC_Result(ADCINCH_6);
+    }
