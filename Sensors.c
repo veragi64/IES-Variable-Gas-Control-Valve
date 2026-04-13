@@ -43,11 +43,11 @@ void init_Sensors(){
     // THIS SECTION OF CODE WAS PROGRAMED WITH THE HELP OF Notebook Lm
     // CODE BLOCKS WILL BE GIVEN IN THE ENGINEERING NOTEBOOK FOR THIS GROUP
 
-    unsigned int read_POT(){
+    unsigned int read_sPoint(){
         return get_ADC_Result(ADCINCH_5);
     }
 
-    unsigned int read_Thermocouple(){
+    unsigned int read_Flame(){
         return get_ADC_Result(ADCINCH_3);
     }
 

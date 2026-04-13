@@ -23,7 +23,7 @@ while(1){
     }
 }*/
 RGB_init();
-
+init_Sensors();
 init_Servo();
 
 __delay_cycles(300000);
