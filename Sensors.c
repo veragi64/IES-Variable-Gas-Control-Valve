@@ -16,8 +16,6 @@ void init_Sensors(){
     ADCCTL2 &= ~ADCRES;                   // Clear resolution settings
     ADCCTL2 |= ADCRES_2; 
 
-    PM5CTL0 &= ~LOCKLPM5;                 // Disable High-Impedance mode, activate pins
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // NOTE:
@@ -43,12 +41,12 @@ void init_Sensors(){
     // THIS SECTION OF CODE WAS PROGRAMED WITH THE HELP OF Notebook Lm
     // CODE BLOCKS WILL BE GIVEN IN THE ENGINEERING NOTEBOOK FOR THIS GROUP
 
-    unsigned int read_sPoint(){
+    unsigned int read_POT(){
         return get_ADC_Result(ADCINCH_5);
     }
 
-    unsigned int read_Flame(){
-        return get_ADC_Result(ADCINCH_3);
+    unsigned int read_Thermocouple(){
+        return get_ADC_Result(ADCINCH_1);
     }
 
     unsigned int read_Thermistor(){

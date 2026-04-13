@@ -25,7 +25,7 @@ void init_Servo(){
 
 }
 
-void setServo(char Percent){
+void setServo(unsigned char Percent){
 
 if(Percent >= 100){        // Setting Boundries for Percent
     Percent = 100;
@@ -35,7 +35,7 @@ if(Percent <=0){
     Percent = 0;
 }
 
-int Cycle = 500 + (Percent * 20); //Setting duty cycle value based on percent
+int Cycle = 1000 + (Percent * 10); //Setting duty cycle value based on percent
                                    // Helped by Lm NOTEBOOK
 
 TB1CCR2 = Cycle;                   //Updating TB1.2
