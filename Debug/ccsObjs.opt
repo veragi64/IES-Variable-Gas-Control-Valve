@@ -1,6 +1,8 @@
 "./RGBLED.obj"
 "./Sensors.obj"
+"./Solenoid.obj"
 "./init_Servo.obj"
+"./init_ThermC.obj"
 "./main.obj"
 "../lnk_msp430fr2355.cmd"
 -lfrwp_init.a

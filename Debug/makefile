@@ -12,7 +12,9 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./RGBLED.obj" \
 "./Sensors.obj" \
+"./Solenoid.obj" \
 "./init_Servo.obj" \
+"./init_ThermC.obj" \
 "./main.obj" \
 "../lnk_msp430fr2355.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -139,8 +141,8 @@ GasControl_Valve.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "RGBLED.obj" "Sensors.obj" "init_Servo.obj" "main.obj" 
-	-$(RM) "RGBLED.d" "Sensors.d" "init_Servo.d" "main.d" 
+	-$(RM) "RGBLED.obj" "Sensors.obj" "Solenoid.obj" "init_Servo.obj" "init_ThermC.obj" "main.obj" 
+	-$(RM) "RGBLED.d" "Sensors.d" "Solenoid.d" "init_Servo.d" "init_ThermC.d" "main.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

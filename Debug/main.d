@@ -10,6 +10,8 @@ main.obj: C:/ti/ccs2041/ccs/ccs_base/msp430/include/legacy.h
 main.obj: ../RGBLED.h
 main.obj: ../init_Servo.h
 main.obj: ../Sensors.h
+main.obj: ../init_ThermC.h
+main.obj: ../Solenoid.h
 
 ../main.c:
 
@@ -30,4 +32,8 @@ C:/ti/ccs2041/ccs/ccs_base/msp430/include/legacy.h:
 ../init_Servo.h:
 
 ../Sensors.h:
+
+../init_ThermC.h:
+
+../Solenoid.h:
 
