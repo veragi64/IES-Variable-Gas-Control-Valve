@@ -49,7 +49,11 @@ void init_Sensors(){
         return get_ADC_Result(ADCINCH_1);
     }
 
-    unsigned float_t read_Thermistor(){
-        float_t TempF =  0.04594 * get_ADC_Result(ADCINCH_6) - 16.1127; //Linear Approximation
+    unsigned int read_Thermistor(){
+        return get_ADC_Result(ADCINCH_6);
+    }
+
+    float convert_Thermistor(int input){
+        float TempF =  (0.04594f * (float)input) - 16.1127f; //Linear Approximation
         return TempF;
     }
