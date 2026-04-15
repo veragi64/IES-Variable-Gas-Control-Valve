@@ -2,6 +2,4 @@
 
 void init_Solenoid();
 
-void Pilot_Open();
-
-void Pilot_Close();
+void Pilot_Open(_Bool);

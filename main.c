@@ -54,15 +54,20 @@ Thermistor_Value = read_Thermistor();
 }*/
 
 while(1){
+  Thermistor_Value = read_Thermistor();
+  if(Thermistor_Value > 2200){
+    Pilot_Open(1);
 
-  Pilot_Open();
+    __delay_cycles(100000);
 
-  __delay_cycles(1000000);
+  }
+  if(Thermistor_Value < 2090){
+    Pilot_Open(0);
 
-  Pilot_Close();
+    __delay_cycles(100000);
 
-    __delay_cycles(1000000);
-
+  }
+  
 
 }
 
