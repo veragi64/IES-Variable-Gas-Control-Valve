@@ -45,9 +45,16 @@ void init_Sensors(){
         return get_ADC_Result(ADCINCH_5);
     }
 
+    float convert_POT(int input){
+        float TempF = (0.0073f * (-(float)input)) + 120;
+        return TempF;
+    }
+
     unsigned int read_Thermocouple(){
         return get_ADC_Result(ADCINCH_1);
     }
+
+    
 
     unsigned int read_Thermistor(){
         return get_ADC_Result(ADCINCH_6);

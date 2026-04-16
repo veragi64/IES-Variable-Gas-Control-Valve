@@ -17,6 +17,8 @@ unsigned int Thermistor_Value;
 
 float Thermistor_F;
 
+float Setpoint_F;
+
  init_Sensors();
 
  init_ThermC();
@@ -27,51 +29,17 @@ init_Solenoid();
 
  PM5CTL0 &= ~LOCKLPM5;
  
- /*while(1) {
+_Bool Detect_Flame;
 
-   ThermC_Value = read_Thermocouple();
+read_Thermocouple();
 
-     __no_operation();  
-     
- }
-*/
-
-/*unsigned int count = 0;
-while(1){
-  while(count <= 100){
-  setServo(count);
-  count += 10;
-  __delay_cycles(100000);
-  }
-  count = 0;
-  setServo(count);
-  __delay_cycles(1000000);
-}*/
-
-
-/*while(1) {
-
-Thermistor_Value = read_Thermistor();
-
-}*/
-
-while(1){
-  Thermistor_Value = read_Thermistor();
-  Thermistor_F = convert_Thermistor(Thermistor_Value);
-  if(Thermistor_F > 83){
-    Pilot_Open(1);
-
-    __delay_cycles(100000);
-
-  }
-  if(Thermistor_F < 78){
-    Pilot_Open(0);
-
-    __delay_cycles(100000);
-
-  }
-  
-
+if (read_Thermocouple() >= 80)
+{
+  Detect_Flame = 1;
+}
+else {
+Detect_Flame = 0;
 }
 
 }
+
