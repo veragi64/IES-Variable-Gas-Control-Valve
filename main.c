@@ -15,6 +15,8 @@ unsigned int ThermC_Value;
 
 unsigned int Thermistor_Value;
 
+float Thermistor_F;
+
  init_Sensors();
 
  init_ThermC();
@@ -55,13 +57,14 @@ Thermistor_Value = read_Thermistor();
 
 while(1){
   Thermistor_Value = read_Thermistor();
-  if(Thermistor_Value > 2200){
+  Thermistor_F = convert_Thermistor(Thermistor_Value);
+  if(Thermistor_F > 83){
     Pilot_Open(1);
 
     __delay_cycles(100000);
 
   }
-  if(Thermistor_Value < 2090){
+  if(Thermistor_F < 78){
     Pilot_Open(0);
 
     __delay_cycles(100000);
