@@ -4,42 +4,44 @@
 #include "Sensors.h"
 #include "init_ThermC.h"
 #include "Solenoid.h"
+#include "Pilot.h"
+
+float SetPoint_F;
+float Thermistor_F;
+unsigned int ThermCoupVal;
 
 int main(){
 
     WDTCTL = WDTPW | WDTHOLD;
 
-    
+init_Pilot();
 
-unsigned int ThermC_Value;
+init_RGB();
 
-unsigned int Thermistor_Value;
+init_Sensors();
 
-float Thermistor_F;
+init_ThermC();
 
-float Setpoint_F;
+init_Servo();
 
- init_Sensors();
-
- init_ThermC();
-
- init_Servo();
-
-init_Solenoid();
+init_PilotV();
 
  PM5CTL0 &= ~LOCKLPM5;
- 
-_Bool Detect_Flame;
 
-read_Thermocouple();
+__delay_cycles(100000);
 
-if (read_Thermocouple() >= 80)
-{
-  Detect_Flame = 1;
-}
-else {
-Detect_Flame = 0;
-}
+set_ignite(1);
 
+__delay_cycles(100000);
+
+set_ignite(0);
+
+__delay_cycles(100000);
+
+set_ignite(1);
+
+__delay_cycles(100000);
+
+set_ignite(0);
 }
 

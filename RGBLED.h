@@ -1,4 +1,4 @@
 #include <msp430.h>
 
-void RGB_init();        // Initializes Timer and for RGBLED;
-void RGB_setColor( char Red, char Green, char Blue);
+void init_RGB();        // Initializes Timer and for RGBLED;
+void set_RGB( char Red, char Green, char Blue);

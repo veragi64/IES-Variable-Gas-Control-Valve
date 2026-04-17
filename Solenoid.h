@@ -1,5 +1,5 @@
 #include <msp430.h>
 
-void init_Solenoid();
+void init_PilotV();
 
-void Pilot_Open(_Bool);
+void set_Pilot(_Bool);

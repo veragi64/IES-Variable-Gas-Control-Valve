@@ -1,7 +1,7 @@
 
 #include <msp430.h>
 
-void RGB_init(){
+void init_RGB(){
     // Pin Initializations
     P6DIR |= BIT0 | BIT1 | BIT2;        // Set RGB Pins 
     P6SEL1 &= ~(BIT0 | BIT1 | BIT2);    // Set Pins for
@@ -24,7 +24,7 @@ void RGB_init(){
     TB3CCR0 = 1024-1;                   // 1ms Period (1024 counts * 1us)
 }
 
-void RGB_setColor( char Red, char Green, char Blue){
+void set_RGB( char Red, char Green, char Blue){
 
     int RedValue = 255 - Red;
     RedValue = RedValue << 2;            // Multiply Red Hex Value by 4

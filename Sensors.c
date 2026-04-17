@@ -44,9 +44,9 @@ void init_Sensors(){
     unsigned int read_POT(){
         return get_ADC_Result(ADCINCH_5);
     }
-
+    //Had to separate conversion functions as integrating them caused weird glitches when converting int to float
     float convert_POT(int input){
-        float TempF = (0.0073f * (-(float)input)) + 120;
+        float TempF = (0.0073f * (-(float)input)) + 120; //Equation to convert potentiometer range to degrees F (90-120)
         return TempF;
     }
 
@@ -54,12 +54,11 @@ void init_Sensors(){
         return get_ADC_Result(ADCINCH_1);
     }
 
-    
-
     unsigned int read_Thermistor(){
         return get_ADC_Result(ADCINCH_6);
     }
-
+    
+    //Had to separate conversion functions as integrating them caused weird glitches when converting int to float
     float convert_Thermistor(int input){
         float TempF =  (0.04594f * (float)input) - 16.1127f; //Linear Approximation
         return TempF;
