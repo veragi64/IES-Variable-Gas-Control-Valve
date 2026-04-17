@@ -28,20 +28,7 @@ init_PilotV();
 
  PM5CTL0 &= ~LOCKLPM5;
 
-__delay_cycles(100000);
 
-set_ignite(1);
 
-__delay_cycles(100000);
-
-set_ignite(0);
-
-__delay_cycles(100000);
-
-set_ignite(1);
-
-__delay_cycles(100000);
-
-set_ignite(0);
 }
 
