@@ -25,7 +25,7 @@ void init_Servo(){
 
 }
 
-void setServo(unsigned char Percent){
+void set_Servo(unsigned char Percent){
 
 if(Percent >= 100){        // Setting Boundries for Percent
     Percent = 100;

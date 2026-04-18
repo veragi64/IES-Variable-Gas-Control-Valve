@@ -1,5 +1,5 @@
 #include <msp430.h>
-
+#include <global_vars.h>
 
 
 void init_Sensors(){
@@ -47,6 +47,7 @@ void init_Sensors(){
     //Had to separate conversion functions as integrating them caused weird glitches when converting int to float
     float convert_POT(int input){
         float TempF = (0.0073f * (-(float)input)) + 120; //Equation to convert potentiometer range to degrees F (90-120)
+        SetPoint_F = TempF;
         return TempF;
     }
 
@@ -61,5 +62,17 @@ void init_Sensors(){
     //Had to separate conversion functions as integrating them caused weird glitches when converting int to float
     float convert_Thermistor(int input){
         float TempF =  (0.04594f * (float)input) - 16.1127f; //Linear Approximation
+        Thermistor_F = TempF;
         return TempF;
+    }
+
+    _Bool FlameDetect(){
+        if(read_Thermocouple() > 80){
+            FlameDetectV = 1;
+            return 1;
+        }
+        else{
+            FlameDetectV = 0;
+            return 0;
+        }
     }
