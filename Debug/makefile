@@ -10,9 +10,13 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./CFH.obj" \
+"./Pilot.obj" \
 "./RGBLED.obj" \
 "./Sensors.obj" \
 "./Solenoid.obj" \
+"./UART.obj" \
+"./global_vars.obj" \
 "./init_Servo.obj" \
 "./init_ThermC.obj" \
 "./main.obj" \
@@ -141,8 +145,8 @@ GasControl_Valve.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "RGBLED.obj" "Sensors.obj" "Solenoid.obj" "init_Servo.obj" "init_ThermC.obj" "main.obj" 
-	-$(RM) "RGBLED.d" "Sensors.d" "Solenoid.d" "init_Servo.d" "init_ThermC.d" "main.d" 
+	-$(RM) "CFH.obj" "Pilot.obj" "RGBLED.obj" "Sensors.obj" "Solenoid.obj" "UART.obj" "global_vars.obj" "init_Servo.obj" "init_ThermC.obj" "main.obj" 
+	-$(RM) "CFH.d" "Pilot.d" "RGBLED.d" "Sensors.d" "Solenoid.d" "UART.d" "global_vars.d" "init_Servo.d" "init_ThermC.d" "main.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
