@@ -24,7 +24,7 @@ void init_Clock_System(void) {
     while(CSCTL7 & (FLLUNLOCK0 | FLLUNLOCK1)); 
 }
 //-----------------------------------------------------------------------------------------//
-char reportBuffer[80];
+char display_msg[80];
 char STATE = 'I';
 /*
 void init_Interrupt_Timer(){
@@ -59,6 +59,8 @@ int main(){
 
     init_PilotV();
 
+    unsigned int FlameTries;
+
     PM5CTL0 &= ~LOCKLPM5;
 
     UART_WIFI_Init();
@@ -83,7 +85,7 @@ int main(){
             //IGNITION STATE
             case 'F':
                 set_RGB(0,255,0);
-                unsigned int FlameTries = 0;
+                FlameTries = 0;
                 set_Ignite(1);
                 set_PilotV(1);
                 while(!FlameDetectV){
@@ -116,7 +118,7 @@ int main(){
             case 'H':
                 if(1){
                     set_RGB(0,0,255);
-                    unsigned valve = SetPoint_F - Thermistor_F;
+                    int valve = SetPoint_F - Thermistor_F;
                     if(valve > 20){
                         valve = 20;
                     }
@@ -139,6 +141,12 @@ int main(){
                 STATE = 'I';
 
         }
+
+        sprintf(display_msg, "Pot: %d, Therm: %d, TC: %d\r\n", 
+                SetP, TMist, TCoup);
+                UART_BCL_SendCharArray(display_msg);
+                 __delay_cycles(1000000);
+
         //Simple 100ms delay
         //__delay_cycles(100000);
 
@@ -168,7 +176,7 @@ int main(){
                 case 5:
                     SetP = rawData;
                     break;
-                case 3: // Result from A3 (Thermocouple)
+                case 1: // Result from A3 (Thermocouple)
                     TCoup = rawData;
                     break;
                     

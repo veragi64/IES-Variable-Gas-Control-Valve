@@ -20,7 +20,7 @@ void init_Sensors(){
 
     ADCCTL0 &= ~ADCENC;                 //Disable to modify
     
-    ADCCTL1 = ADCCONSEQ_1 | ADCSHS_1 | ADCSHP | ADCSSEL_2 | ADCDIV_7; ////Sets squence of channels to decrement and make the adc triggered by the Timer_B0.1                  
+    ADCCTL1 = ADCCONSEQ_3 | ADCSHS_1 | ADCSHP | ADCSSEL_2 | ADCDIV_7; ////Sets squence of channels to decrement and make the adc triggered by the Timer_B0.1                  
 
     ADCCTL0 |= ADCMSC | ADCON;          // Allows one timer trigger to start the entire sequence; Turn ADC ON
     ADCMCTL0 = ADCINCH_9 | ADCSREF_0;               //Sample A9-A0 decending
