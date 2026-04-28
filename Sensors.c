@@ -1,6 +1,19 @@
 #include <msp430.h>
 #include <global_vars.h>
 
+void init_30sTimer(){
+    TB0CTL; //Clear Timer
+
+    TB0CTL |= TBSSEL__ACLK | ID__8; //Signal source set to aux clock (32768Hz) and first divider set to 8
+
+    TB0EX0 = TBIDEX_7; //expansion divider set to 8  32768/8/8=512
+
+    TB0CCR0 = 15360; // 30 second threshold  512 * 30s = 15360
+
+    TB0CCTL0 = CCIE; //Enables CCR0 interrupt
+    TB0CTL |= MC__UP; // Start timer in Up Mode
+}
+
 void init_ADC_HardwareTimer(){
     SYSCFG2 |= RTCCKSEL;
 
@@ -20,10 +33,12 @@ void init_Sensors(){
 
     ADCCTL0 &= ~ADCENC;                 //Disable to modify
     
-    ADCCTL1 = ADCCONSEQ_3 | ADCSHS_1 | ADCSHP | ADCSSEL_2 | ADCDIV_7; ////Sets squence of channels to decrement and make the adc triggered by the Timer_B0.1                  
+    ADCCTL1 = ADCCONSEQ_1 | ADCSHS_1 | ADCSHP | ADCSSEL_2 | ADCDIV_7; ////Sets squence of channels to decrement and make the adc triggered by the real time clock                 
 
-    ADCCTL0 |= ADCMSC | ADCON;          // Allows one timer trigger to start the entire sequence; Turn ADC ON
-    ADCMCTL0 = ADCINCH_9 | ADCSREF_0;               //Sample A9-A0 decending
+    ADCCTL0 |= ADCMSC | ADCON | ADCSHT_15;          // Allows one timer trigger to start the entire sequence; Turn ADC ON
+    ADCCTL2 = ADCRES_2;                     //Set resolution to 12-bit 
+    
+    ADCMCTL0 = ADCINCH_9;               //Sample A9-A0 decending
     ADCIE |= ADCIE0;                    //Enable conversion complete interrupt
     ADCCTL0 |= ADCENC;                  //Re-enable ADC
 
@@ -57,11 +72,12 @@ void init_Sensors(){
         return get_ADC_Result(ADCINCH_5);
     }*/
     //Had to separate conversion functions as integrating them caused weird glitches when converting int to float
+    /*
     float convert_POT(int input){
         float TempF = (0.0073f * (-(float)input)) + 120; //Equation to convert potentiometer range to degrees F (90-120)
         SetPoint_F = TempF;
         return TempF;
-    }
+    }*/
     /*
     unsigned int read_Thermocouple(){
         return get_ADC_Result(ADCINCH_1);
@@ -72,19 +88,18 @@ void init_Sensors(){
     }*/
     
     //Had to separate conversion functions as integrating them caused weird glitches when converting int to float
-    float convert_Thermistor(int input){
+    /*float convert_Thermistor(int input){
         float TempF =  (0.04594f * (float)input) - 16.1127f; //Linear Approximation
         Thermistor_F = TempF;
         return TempF;
     }
+    */
 
     _Bool FlameDetect(int input){
         if(input > 80){
-            FlameDetectV = 1;
             return 1;
         }
         else{
-            FlameDetectV = 0;
             return 0;
         }
     }

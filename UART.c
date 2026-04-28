@@ -62,9 +62,8 @@ Transcript available: https://docs.google.com/document/d/1d_5UyO1Xhi9d7KIZvhhafN
 void UART_BCL_SendCharArray(char *charArray){
     char char_count = 0;
 
-    while((char_count < 30) && (*charArray != '\0')){
-        while(!(UCA1IFG&UCTXIFG));
-        
+    while((char_count < 100) && (*charArray != '\0')){
+        while(!(UCA1IFG&UCTXIFG));  
         UCA1TXBUF = *charArray;
         __delay_cycles(100);
         char_count++;
@@ -74,12 +73,11 @@ void UART_BCL_SendCharArray(char *charArray){
 
 
 void UART_WIFI_SendCharArray(char *charArray){
-    char char_count = 0;
+    char char_count = 0;  
 
     while((char_count < 30) && (*charArray != '\0')){
         while(!(UCA0IFG&UCTXIFG));
         UCA0TXBUF = *charArray;
-        __delay_cycles(100);
         char_count++;
         *charArray++;
         }

@@ -6,3 +6,4 @@ _Bool FlameDetectV = 0;
 unsigned int SetP = 0;
 unsigned int TMist = 0;
 unsigned int TCoup = 0;
+char STATE = 'I';

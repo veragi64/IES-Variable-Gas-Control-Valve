@@ -14,6 +14,7 @@ C_SRCS += \
 ../RGBLED.c \
 ../Sensors.c \
 ../Solenoid.c \
+../ThermLUT.c \
 ../UART.c \
 ../global_vars.c \
 ../init_Servo.c \
@@ -26,6 +27,7 @@ C_DEPS += \
 ./RGBLED.d \
 ./Sensors.d \
 ./Solenoid.d \
+./ThermLUT.d \
 ./UART.d \
 ./global_vars.d \
 ./init_Servo.d \
@@ -38,6 +40,7 @@ OBJS += \
 ./RGBLED.obj \
 ./Sensors.obj \
 ./Solenoid.obj \
+./ThermLUT.obj \
 ./UART.obj \
 ./global_vars.obj \
 ./init_Servo.obj \
@@ -50,6 +53,7 @@ OBJS__QUOTED += \
 "RGBLED.obj" \
 "Sensors.obj" \
 "Solenoid.obj" \
+"ThermLUT.obj" \
 "UART.obj" \
 "global_vars.obj" \
 "init_Servo.obj" \
@@ -62,6 +66,7 @@ C_DEPS__QUOTED += \
 "RGBLED.d" \
 "Sensors.d" \
 "Solenoid.d" \
+"ThermLUT.d" \
 "UART.d" \
 "global_vars.d" \
 "init_Servo.d" \
@@ -74,6 +79,7 @@ C_SRCS__QUOTED += \
 "../RGBLED.c" \
 "../Sensors.c" \
 "../Solenoid.c" \
+"../ThermLUT.c" \
 "../UART.c" \
 "../global_vars.c" \
 "../init_Servo.c" \

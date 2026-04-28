@@ -3,6 +3,7 @@
 "./RGBLED.obj"
 "./Sensors.obj"
 "./Solenoid.obj"
+"./ThermLUT.obj"
 "./UART.obj"
 "./global_vars.obj"
 "./init_Servo.obj"

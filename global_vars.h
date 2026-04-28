@@ -6,3 +6,4 @@ extern _Bool FlameDetectV;
 extern unsigned int SetP;
 extern unsigned int TMist;
 extern unsigned int TCoup;
+extern char STATE;

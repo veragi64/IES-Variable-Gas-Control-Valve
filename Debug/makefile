@@ -15,6 +15,7 @@ ORDERED_OBJS += \
 "./RGBLED.obj" \
 "./Sensors.obj" \
 "./Solenoid.obj" \
+"./ThermLUT.obj" \
 "./UART.obj" \
 "./global_vars.obj" \
 "./init_Servo.obj" \
@@ -145,8 +146,8 @@ GasControl_Valve.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "CFH.obj" "Pilot.obj" "RGBLED.obj" "Sensors.obj" "Solenoid.obj" "UART.obj" "global_vars.obj" "init_Servo.obj" "init_ThermC.obj" "main.obj" 
-	-$(RM) "CFH.d" "Pilot.d" "RGBLED.d" "Sensors.d" "Solenoid.d" "UART.d" "global_vars.d" "init_Servo.d" "init_ThermC.d" "main.d" 
+	-$(RM) "CFH.obj" "Pilot.obj" "RGBLED.obj" "Sensors.obj" "Solenoid.obj" "ThermLUT.obj" "UART.obj" "global_vars.obj" "init_Servo.obj" "init_ThermC.obj" "main.obj" 
+	-$(RM) "CFH.d" "Pilot.d" "RGBLED.d" "Sensors.d" "Solenoid.d" "ThermLUT.d" "UART.d" "global_vars.d" "init_Servo.d" "init_ThermC.d" "main.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
