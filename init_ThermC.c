@@ -11,8 +11,8 @@ void init_ThermC()
   P1SEL0 |= BIT1 + BIT2 + BIT3;             // Select P1.1 P1.2 P1.3 OA function
   P1SEL1 |= BIT1 + BIT2 + BIT3;             // Select P1.1 P1.2 P1.3 OA function
   SAC0OA |= NMUXEN + PMUXEN;                // Enable negative and positive input
-  SAC0OA |= PSEL_0;
-  SAC0OA |= NSEL_1;
+  SAC0OA |= PSEL_0;                         // Selects P1.3 as the positive input
+  SAC0OA |= NSEL_1;                         // Selects the internal path as the negative input
 
 
 //------------------------------------------------------------------------------------//

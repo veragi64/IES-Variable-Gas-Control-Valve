@@ -11,14 +11,12 @@ void init_30sTimer(){
     TB0CCR0 = 15360; // 30 second threshold  512 * 30s = 15360
 
     TB0CCTL0 = CCIE; //Enables CCR0 interrupt
-    TB0CTL |= MC__UP; // Start timer in Up Mode
+    TB0CTL |= MC__UP; // Start timer in Up Mode which means it starts at 0 and counts up
 }
 
 void init_ADC_HardwareTimer(){
-    SYSCFG2 |= RTCCKSEL;
-
     RTCMOD = 3277-1; // 32,768Hz * 0.1s = ~3277 counts
-    RTCCTL = RTCSS_1 | RTCPS_0 | RTCSR; //RTCSS_1 = 32kHz internal clock, RTCPS_0 = makes the predivider 1, RTCSR = applies changes to the RTC
+    RTCCTL = RTCSS_2| RTCPS_0 | RTCSR | RTCIE; //RTCSS_2 = 32kHz aux clock, RTCPS_0 = makes the predivider 1, RTCSR = applies changes to the RTC, RTCIE = enables interrupts
 }
 void init_Sensors(){
 

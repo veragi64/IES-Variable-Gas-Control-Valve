@@ -1,6 +1,7 @@
 #include "UART.h"
+#include <global_vars.h>
 
-
+char returnmes[100];
 void UART_BCL_Init(){
 
  
@@ -118,7 +119,17 @@ __interrupt void BCL_UART_ISR(void)
     case USCI_UART_UCRXIFG:
       while(!(UCA1IFG&UCTXIFG));
       UCA1TXBUF = UCA1RXBUF;
-      __no_operation();
+      switch(UCA1TXBUF)
+      {
+        case 'S':
+          sprintf(returnmes,"STATE: %c\r\n", // Create string to send into UART function
+                  STATE);
+                  UART_BCL_SendCharArray(returnmes);
+          break;
+        default:
+          __no_operation();
+          break;
+      }
       break;
     case USCI_UART_UCTXIFG: break;
     case USCI_UART_UCSTTIFG: break;

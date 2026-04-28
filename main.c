@@ -9,7 +9,8 @@
 #include "UART.h"
 #include <stdio.h>
 #include <ThermLUT.h>
-
+//#define FLAMEWAIT 300000000 /*300 seconds*/ 
+#define FLAMEWAIT 1000000 /*1 seconds*/ 
 
             //This section of code was made with the help of Notebook LM//
 //-----------------------------------------------------------------------------------------//
@@ -26,6 +27,7 @@ void init_Clock_System(void) {
 }
 //-----------------------------------------------------------------------------------------//
 char display_msg[140];
+static unsigned int currentChannel = 9;
 
 /*
 void init_Interrupt_Timer(){
@@ -42,7 +44,7 @@ int main(){
 
     
     //init_Interrupt_Timer();
-    //init_Clock_System();
+    init_Clock_System();
     
     init_ADC_HardwareTimer();
     
@@ -72,7 +74,8 @@ int main(){
     __enable_interrupt();
 
  
-    
+    set_RGB(0,0,0);
+    __delay_cycles(1000000);
     while(1){
         switch (STATE) {
             //IDLE STATE
@@ -81,20 +84,26 @@ int main(){
                 set_Servo(0);
                 set_Ignite(0);
                 set_PilotV(0);
-                if(CallForHeat() || TMist < SetP){
+                if(CallForHeat() || TMist < SetP - 5){
                     STATE = 'F'; 
                 }
                 break;
             //IGNITION STATE
             case 'F':
                 set_RGB(0,255,0);
-                FlameTries = 0;
+                FlameTries = 1;
                 set_Ignite(1);
                 set_PilotV(1);
+                __delay_cycles(1000000); // 1s wait before checking flame
                 while(!FlameDetectV){
-                    __delay_cycles(1000000);
+                    set_Ignite(0); //turn off
+                    set_PilotV(0);
+                    __delay_cycles(FLAMEWAIT);// Wait 5 minutes
+                    set_Ignite(1); //try again
+                    set_PilotV(1);
+                    __delay_cycles(1000000); // 1s wait before checking flame
                     FlameTries++;
-                    if(FlameTries > 5){
+                    if(FlameTries >= 5){
                         STATE = 'S';
                         break;
                     }
@@ -119,7 +128,8 @@ int main(){
             case 'H':
                 if(1){
                     set_RGB(0,0,255);
-                    int valve = SetP - TMist;
+                    _delay_cycles(500000);
+                    int valve = (SetP/10) - (TMist/10);
                     if(valve > 20){
                         valve = 20;
                     }
@@ -132,7 +142,7 @@ int main(){
                 else{
                     STATE = 'F';
                 }
-                if((SetP - TMist) < -2)
+                if(SetP < TMist + 5)
                 {
                     STATE = 'I';
                 }
@@ -147,7 +157,7 @@ int main(){
                 
 
         //Simple 100ms delay
-        //__delay_cycles(100000);
+        __delay_cycles(100000);
 
         
 
@@ -158,16 +168,23 @@ int main(){
         //30 SECOND INTERRPUT
         #pragma vector = TIMER0_B0_VECTOR
         __interrupt void ISR_TB0_CCR0(){
-            sprintf(display_msg, "T: %d.%d, F: %d S: %c\r\n", // Create string to send into UART function
+            sprintf(display_msg, "T: %d.%dF, F: %d S: %c\r\n", // Create string to send into UART function
                 TMist/10, abs(TMist%10), FlameDetectV, STATE);
                 UART_BCL_SendCharArray(display_msg);
                 TB0CCTL0 &= ~CCIFG; // Clear interrupt flag
+        }
+        #pragma vector = RTC_VECTOR
+        __interrupt void ISR_RTC(){
+            currentChannel = 9;         //Reset ADC sample index
+            ADCCTL0 &= ~ADCENC;
+            ADCCTL0 |= ADCENC | ADCSC;
+            RTCIV;                      //Clear the interrupt flag
         }
        //ADC INTERRUPT 
         #pragma vector=ADC_VECTOR
         __interrupt void ADC_ISR(void) {
             // Read the bits (3-0) to see which channel just finished (Source 1068)
-            static unsigned int currentChannel = 9;
+            
             unsigned int rawData = ADCMEM0;
             switch(currentChannel) {
                 case 9: // Result from A9 (Thermistor)
@@ -187,11 +204,10 @@ int main(){
 
             }
             
-        if (currentChannel == 0){
-            currentChannel = 9;
-        } // Reset for next RTC trigger
-        else {
+        if (currentChannel > 0){
             currentChannel--;
-        }
-        ADCCTL0 |= ADCSC;
+        } 
+            
+        
+        
         }

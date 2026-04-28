@@ -6,7 +6,7 @@ const int sPointLUT[64] = {900, 909, 914, 918, 923, 928, 932, 937, 942, 946, 951
 
 int convert_Tmist(rawData){
 
-int sizeDown = rawData >> 3;
+int sizeDown = rawData >> 3; //Divide by 2^3 (/8) to get 512 possible values from thermistor
 
 return TmistLUT[sizeDown];
 
@@ -14,7 +14,7 @@ return TmistLUT[sizeDown];
 
 int convert_sPoint(rawData){
 
-int sizeDown = rawData >> 6;
+int sizeDown = rawData >> 6; //Divide by 2^6 (/64) to get 64 possible values from pot
 
 return sPointLUT[sizeDown];
 
