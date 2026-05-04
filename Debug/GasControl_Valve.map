@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v21.6.1                     
 ******************************************************************************
->> Linked Tue Apr 28 15:23:18 2026
+>> Linked Tue Apr 28 16:58:00 2026
 
 OUTPUT FILE NAME:   <GasControl_Valve.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs_mpu"  address: 000090a0
+ENTRY POINT SYMBOL: "_c_int00_noargs_mpu"  address: 000090e0
 
 
 MEMORY CONFIGURATION
@@ -17,7 +17,7 @@ MEMORY CONFIGURATION
   TLVMEM                00001a00   00000200  00000000  00000200  RWIX
   BOOTCODE              00001c00   00000400  00000000  00000400  RWIX
   RAM                   00002000   00001000  0000019c  00000e64  RWIX
-  FRAM                  00008000   00007f80  000010f8  00006e88  RWIX
+  FRAM                  00008000   00007f80  00001138  00006e48  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   BSLCONFIGURATIONSIGNA 0000ff88   00000002  00000002  00000000  RWIX  ffff 
@@ -113,61 +113,61 @@ section   page    origin      length       input sections
                   000084d4    0000001a     main.obj (.const:.string)
                   000084ee    0000000c     UART.obj (.const:.string)
 
-.text      0    000084fa    00000ab0     
-                  000084fa    0000022e     main.obj (.text:main)
-                  00008728    0000010e     rts430x_lc_sd_eabi.lib : _printfi.c.obj (.text:__TI_printfi_minimal:_setfield___TI_printfi_minimal)
-                  00008836    000000ee                            : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00008924    000000e2                            : _printfi.c.obj (.text:__TI_printfi_minimal:__TI_printfi_minimal)
-                  00008a06    000000c4                            : _printfi.c.obj (.text:__TI_printfi_minimal:_pproc_diouxp___TI_printfi_minimal)
-                  00008aca    0000006a                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  00008b34    00000040     UART.obj (.text:UART_BCL_Init)
-                  00008b74    00000040     rts430x_lc_sd_eabi.lib : cpy_util.asm.obj (.text:__memcpy_far)
-                  00008bb4    0000003e                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  00008bf2    0000003e     RGBLED.obj (.text:init_RGB)
-                  00008c30    0000003c     FRWP_INIT_LIB_CCS_msp430_large_code_small_data.lib : frwp_init.obj (.text:__mpu_init)
-                  00008c6c    0000003c     rts430x_lc_sd_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  00008ca8    0000003a     Sensors.obj (.text:init_Sensors)
-                  00008ce2    00000038     RGBLED.obj (.text:set_RGB)
-                  00008d1a    00000038     rts430x_lc_sd_eabi.lib : sprintf.c.obj (.text:sprintf)
-                  00008d52    0000002e     UART.obj (.text:UART_BCL_SendCharArray)
-                  00008d80    0000002c     UART.obj (.text:UART_WIFI_Init)
-                  00008dac    0000002c     init_ThermC.obj (.text:init_ThermC)
-                  00008dd8    00000026     main.obj (.text:init_Clock_System)
-                  00008dfe    00000024     Sensors.obj (.text:init_30sTimer)
-                  00008e22    00000024     init_Servo.obj (.text:init_Servo)
-                  00008e46    00000024     init_Servo.obj (.text:set_Servo)
-                  00008e6a    00000022     rts430x_lc_sd_eabi.lib : memccpy.c.obj (.text:memccpy)
-                  00008e8c    00000018                            : sprintf.c.obj (.text:_outs)
-                  00008ea4    00000018                            : mult16_f5hw.asm.obj (.text)
-                  00008ebc    00000016                            : div16u.asm.obj (.text)
-                  00008ed2    00000014                            : memset.c.obj (.text:memset)
-                  00008ee6    00000014     Solenoid.obj (.text:set_PilotV)
-                  00008efa    00000012     rts430x_lc_sd_eabi.lib : sprintf.c.obj (.text:_outc)
-                  00008f0c    00000012                            : memcpy.c.obj (.text:memcpy)
-                  00008f1e    00000010     Pilot.obj (.text:set_Ignite)
-                  00008f2e    0000000e     Sensors.obj (.text:FlameDetect)
-                  00008f3c    0000000e     Sensors.obj (.text:init_ADC_HardwareTimer)
-                  00008f4a    0000000e     Solenoid.obj (.text:init_PilotV)
-                  00008f58    0000000e     rts430x_lc_sd_eabi.lib : strlen.c.obj (.text:strlen)
-                  00008f66    0000000c     ThermLUT.obj (.text:convert_sPoint)
-                  00008f72    0000000a     rts430x_lc_sd_eabi.lib : abs.c.obj (.text:abs)
-                  00008f7c    0000000a     ThermLUT.obj (.text:convert_Tmist)
-                  00008f86    0000000a     Pilot.obj (.text:init_Pilot)
-                  00008f90    00000008     CFH.obj (.text:CallForHeat)
-                  00008f98    00000006     rts430x_lc_sd_eabi.lib : exit.c.obj (.text:abort)
-                  00008f9e    00000006     CFH.obj (.text:init_CFH)
-                  00008fa4    00000004     rts430x_lc_sd_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  00008fa8    00000002                            : startup.c.obj (.text:_system_post_cinit)
+.text      0    000084fa    00000af0     
+                  000084fa    0000026e     main.obj (.text:main)
+                  00008768    0000010e     rts430x_lc_sd_eabi.lib : _printfi.c.obj (.text:__TI_printfi_minimal:_setfield___TI_printfi_minimal)
+                  00008876    000000ee                            : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00008964    000000e2                            : _printfi.c.obj (.text:__TI_printfi_minimal:__TI_printfi_minimal)
+                  00008a46    000000c4                            : _printfi.c.obj (.text:__TI_printfi_minimal:_pproc_diouxp___TI_printfi_minimal)
+                  00008b0a    0000006a                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  00008b74    00000040     UART.obj (.text:UART_BCL_Init)
+                  00008bb4    00000040     rts430x_lc_sd_eabi.lib : cpy_util.asm.obj (.text:__memcpy_far)
+                  00008bf4    0000003e                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00008c32    0000003e     RGBLED.obj (.text:init_RGB)
+                  00008c70    0000003c     FRWP_INIT_LIB_CCS_msp430_large_code_small_data.lib : frwp_init.obj (.text:__mpu_init)
+                  00008cac    0000003c     rts430x_lc_sd_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00008ce8    0000003a     Sensors.obj (.text:init_Sensors)
+                  00008d22    00000038     RGBLED.obj (.text:set_RGB)
+                  00008d5a    00000038     rts430x_lc_sd_eabi.lib : sprintf.c.obj (.text:sprintf)
+                  00008d92    0000002e     UART.obj (.text:UART_BCL_SendCharArray)
+                  00008dc0    0000002c     UART.obj (.text:UART_WIFI_Init)
+                  00008dec    0000002c     init_ThermC.obj (.text:init_ThermC)
+                  00008e18    00000026     main.obj (.text:init_Clock_System)
+                  00008e3e    00000024     Sensors.obj (.text:init_30sTimer)
+                  00008e62    00000024     init_Servo.obj (.text:init_Servo)
+                  00008e86    00000024     init_Servo.obj (.text:set_Servo)
+                  00008eaa    00000022     rts430x_lc_sd_eabi.lib : memccpy.c.obj (.text:memccpy)
+                  00008ecc    00000018                            : sprintf.c.obj (.text:_outs)
+                  00008ee4    00000018                            : mult16_f5hw.asm.obj (.text)
+                  00008efc    00000016                            : div16u.asm.obj (.text)
+                  00008f12    00000014                            : memset.c.obj (.text:memset)
+                  00008f26    00000014     Solenoid.obj (.text:set_PilotV)
+                  00008f3a    00000012     rts430x_lc_sd_eabi.lib : sprintf.c.obj (.text:_outc)
+                  00008f4c    00000012                            : memcpy.c.obj (.text:memcpy)
+                  00008f5e    00000010     Pilot.obj (.text:set_Ignite)
+                  00008f6e    0000000e     Sensors.obj (.text:FlameDetect)
+                  00008f7c    0000000e     Sensors.obj (.text:init_ADC_HardwareTimer)
+                  00008f8a    0000000e     Solenoid.obj (.text:init_PilotV)
+                  00008f98    0000000e     rts430x_lc_sd_eabi.lib : strlen.c.obj (.text:strlen)
+                  00008fa6    0000000c     ThermLUT.obj (.text:convert_sPoint)
+                  00008fb2    0000000a     rts430x_lc_sd_eabi.lib : abs.c.obj (.text:abs)
+                  00008fbc    0000000a     ThermLUT.obj (.text:convert_Tmist)
+                  00008fc6    0000000a     Pilot.obj (.text:init_Pilot)
+                  00008fd0    00000008     CFH.obj (.text:CallForHeat)
+                  00008fd8    00000006     rts430x_lc_sd_eabi.lib : exit.c.obj (.text:abort)
+                  00008fde    00000006     CFH.obj (.text:init_CFH)
+                  00008fe4    00000004     rts430x_lc_sd_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00008fe8    00000002                            : startup.c.obj (.text:_system_post_cinit)
 
 .text:_isr 
-*          0    00008faa    0000014e     
-                  00008faa    00000060     main.obj (.text:_isr:ISR_TB0_CCR0)
-                  0000900a    0000005a     main.obj (.text:_isr:ADC_ISR)
-                  00009064    0000003c     UART.obj (.text:_isr:BCL_UART_ISR)
-                  000090a0    00000020     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs_mpu)
-                  000090c0    0000001a     main.obj (.text:_isr:ISR_RTC)
-                  000090da    00000016     UART.obj (.text:_isr:WIFI_UART_ISR)
-                  000090f0    00000008     rts430x_lc_sd_eabi.lib : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    00008fea    0000014e     
+                  00008fea    00000060     main.obj (.text:_isr:ISR_TB0_CCR0)
+                  0000904a    0000005a     main.obj (.text:_isr:ADC_ISR)
+                  000090a4    0000003c     UART.obj (.text:_isr:BCL_UART_ISR)
+                  000090e0    00000020     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs_mpu)
+                  00009100    0000001a     main.obj (.text:_isr:ISR_RTC)
+                  0000911a    00000016     UART.obj (.text:_isr:WIFI_UART_ISR)
+                  00009130    00000008     rts430x_lc_sd_eabi.lib : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
 .bss       0    00002000    000000f0     UNINITIALIZED
                   00002000    0000008c     (.common:display_msg)
@@ -289,7 +289,7 @@ MODULE SUMMARY
        ------                       ----   -------   -------
     .\
        ThermLUT.obj                 22     1152      0      
-       main.obj                     808    32        142    
+       main.obj                     872    32        142    
        UART.obj                     236    16        100    
        Sensors.obj                  122    0         0      
        RGBLED.obj                   118    0         0      
@@ -300,7 +300,7 @@ MODULE SUMMARY
        CFH.obj                      14     0         0      
        global_vars.obj              0      0         9      
     +--+----------------------------+------+---------+---------+
-       Total:                       1496   1200      251    
+       Total:                       1560   1200      251    
                                                             
     C:\ti\ccs2041\ccs\ccs_base\msp430\lib\FR2xx\FRWP_INIT_LIB_CCS_msp430_large_code_small_data.lib
        frwp_init.obj                60     0         0      
@@ -352,7 +352,7 @@ MODULE SUMMARY
        Stack:                       0      0         160    
        Linker Generated:            0      45        0      
     +--+----------------------------+------+---------+---------+
-       Grand Total:                 3070   1323      411    
+       Grand Total:                 3134   1323      411    
 
 
 LINKER GENERATED COPY TABLES
@@ -404,7 +404,7 @@ address   name
 00000712  ADCMEM0                                
 00000713  ADCMEM0_H                              
 00000712  ADCMEM0_L                              
-0000900a  ADC_ISR                                
+0000904a  ADC_ISR                                
 00000660  BAKMEM0                                
 00000661  BAKMEM0_H                              
 00000660  BAKMEM0_L                              
@@ -453,8 +453,8 @@ address   name
 00000672  BAKMEM9                                
 00000673  BAKMEM9_H                              
 00000672  BAKMEM9_L                              
-00009064  BCL_UART_ISR                           
-00008f98  C$$EXIT                                
+000090a4  BCL_UART_ISR                           
+00008fd8  C$$EXIT                                
 000002ee  CAPTIOCTL                              
 000002ef  CAPTIOCTL_H                            
 000002ee  CAPTIOCTL_L                            
@@ -533,11 +533,11 @@ address   name
 00000190  CSCTL8                                 
 00000191  CSCTL8_H                               
 00000190  CSCTL8_L                               
-00008f90  CallForHeat                            
+00008fd0  CallForHeat                            
 000001a0  FRCTL0                                 
 000001a1  FRCTL0_H                               
 000001a0  FRCTL0_L                               
-00008f2e  FlameDetect                            
+00008f6e  FlameDetect                            
 000020f0  FlameDetectV                           
 000001a4  GCCTL0                                 
 000001a5  GCCTL0_H                               
@@ -563,8 +563,8 @@ address   name
 000006c0  ICCSC                                  
 000006c1  ICCSC_H                                
 000006c0  ICCSC_L                                
-000090c0  ISR_RTC                                
-00008faa  ISR_TB0_CCR0                           
+00009100  ISR_RTC                                
+00008fea  ISR_TB0_CCR0                           
 000004c4  MAC                                    
 000004da  MAC32H                                 
 000004db  MAC32H_H                               
@@ -1116,9 +1116,9 @@ address   name
 000020f6  TCoup                                  
 000020f4  TMist                                  
 0000802e  TmistLUT                               
-00008b34  UART_BCL_Init                          
-00008d52  UART_BCL_SendCharArray                 
-00008d80  UART_WIFI_Init                         
+00008b74  UART_BCL_Init                          
+00008d92  UART_BCL_SendCharArray                 
+00008dc0  UART_WIFI_Init                         
 00000510  UCA0ABCTL                              
 00000511  UCA0ABCTL_H                            
 00000510  UCA0ABCTL_L                            
@@ -1296,7 +1296,7 @@ address   name
 000001cc  WDTCTL                                 
 000001cd  WDTCTL_H                               
 000001cc  WDTCTL_L                               
-000090da  WIFI_UART_ISR                          
+0000911a  WIFI_UART_ISR                          
 00003000  __STACK_END                            
 000000a0  __STACK_SIZE                           
 0000801e  __TI_CINIT_Base                        
@@ -1304,10 +1304,10 @@ address   name
 0000802e  __TI_CINIT_Warm                        
 00008000  __TI_Handler_Table_Base                
 0000800c  __TI_Handler_Table_Limit               
-000090f0  __TI_ISR_TRAP                          
-00008aca  __TI_auto_init_nobinit_nopinit_hold_wdt
-00008836  __TI_decompress_lzss                   
-00008c6c  __TI_decompress_none                   
+00009130  __TI_ISR_TRAP                          
+00008b0a  __TI_auto_init_nobinit_nopinit_hold_wdt
+00008876  __TI_decompress_lzss                   
+00008cac  __TI_decompress_none                   
 0000ffce  __TI_int22                             
 0000ffd0  __TI_int23                             
 0000ffd2  __TI_int24                             
@@ -1333,54 +1333,54 @@ address   name
 0000fffa  __TI_int44                             
 0000fffc  __TI_int45                             
 ffffffff  __TI_pprof_out_hndl                    
-00008924  __TI_printfi_minimal                   
+00008964  __TI_printfi_minimal                   
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
-00008bb4  __TI_zero_init_nomemset                
+00008bf4  __TI_zero_init_nomemset                
 ffffffff  __c_args__                             
-00008b74  __memcpy_far                           
+00008bb4  __memcpy_far                           
 00000001  __mpu_enable                           
-00008c30  __mpu_init                             
-00008ebc  __mspabi_divu                          
-00008ea4  __mspabi_mpyi_f5hw                     
-00008ebc  __mspabi_remu                          
-000090a0  _c_int00_noargs_mpu                    
+00008c70  __mpu_init                             
+00008efc  __mspabi_divu                          
+00008ee4  __mspabi_mpyi_f5hw                     
+00008efc  __mspabi_remu                          
+000090e0  _c_int00_noargs_mpu                    
 0000fffe  _reset_vector                          
 00002f60  _stack                                 
-00008fa8  _system_post_cinit                     
-00008fa4  _system_pre_init                       
-00008f98  abort                                  
-00008f72  abs                                    
-00008f7c  convert_Tmist                          
-00008f66  convert_sPoint                         
+00008fe8  _system_post_cinit                     
+00008fe4  _system_pre_init                       
+00008fd8  abort                                  
+00008fb2  abs                                    
+00008fbc  convert_Tmist                          
+00008fa6  convert_sPoint                         
 00002000  display_msg                            
 00008000  fram_rw_start                          
 00008000  fram_rx_start                          
 00000001  info_fram_protection                   
-00008dfe  init_30sTimer                          
-00008f3c  init_ADC_HardwareTimer                 
-00008f9e  init_CFH                               
-00008dd8  init_Clock_System                      
-00008f86  init_Pilot                             
-00008f4a  init_PilotV                            
-00008bf2  init_RGB                               
-00008ca8  init_Sensors                           
-00008e22  init_Servo                             
-00008dac  init_ThermC                            
+00008e3e  init_30sTimer                          
+00008f7c  init_ADC_HardwareTimer                 
+00008fde  init_CFH                               
+00008e18  init_Clock_System                      
+00008fc6  init_Pilot                             
+00008f8a  init_PilotV                            
+00008c32  init_RGB                               
+00008ce8  init_Sensors                           
+00008e62  init_Servo                             
+00008dec  init_ThermC                            
 000084fa  main                                   
-00008e6a  memccpy                                
-00008f0c  memcpy                                 
-00008ed2  memset                                 
+00008eaa  memccpy                                
+00008f4c  memcpy                                 
+00008f12  memset                                 
 00000001  program_fram_protection                
 0000208c  returnmes                              
 0000842e  sPointLUT                              
-00008f1e  set_Ignite                             
-00008ee6  set_PilotV                             
-00008ce2  set_RGB                                
-00008e46  set_Servo                              
-00008d1a  sprintf                                
+00008f5e  set_Ignite                             
+00008f26  set_PilotV                             
+00008d22  set_RGB                                
+00008e86  set_Servo                              
+00008d5a  sprintf                                
 00000000  start_protection_offset_address        
-00008f58  strlen                                 
+00008f98  strlen                                 
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -2317,54 +2317,54 @@ address   name
 0000802e  __TI_CINIT_Warm                        
 0000842e  sPointLUT                              
 000084fa  main                                   
-00008836  __TI_decompress_lzss                   
-00008924  __TI_printfi_minimal                   
-00008aca  __TI_auto_init_nobinit_nopinit_hold_wdt
-00008b34  UART_BCL_Init                          
-00008b74  __memcpy_far                           
-00008bb4  __TI_zero_init_nomemset                
-00008bf2  init_RGB                               
-00008c30  __mpu_init                             
-00008c6c  __TI_decompress_none                   
-00008ca8  init_Sensors                           
-00008ce2  set_RGB                                
-00008d1a  sprintf                                
-00008d52  UART_BCL_SendCharArray                 
-00008d80  UART_WIFI_Init                         
-00008dac  init_ThermC                            
-00008dd8  init_Clock_System                      
-00008dfe  init_30sTimer                          
-00008e22  init_Servo                             
-00008e46  set_Servo                              
-00008e6a  memccpy                                
-00008ea4  __mspabi_mpyi_f5hw                     
-00008ebc  __mspabi_divu                          
-00008ebc  __mspabi_remu                          
-00008ed2  memset                                 
-00008ee6  set_PilotV                             
-00008f0c  memcpy                                 
-00008f1e  set_Ignite                             
-00008f2e  FlameDetect                            
-00008f3c  init_ADC_HardwareTimer                 
-00008f4a  init_PilotV                            
-00008f58  strlen                                 
-00008f66  convert_sPoint                         
-00008f72  abs                                    
-00008f7c  convert_Tmist                          
-00008f86  init_Pilot                             
-00008f90  CallForHeat                            
-00008f98  C$$EXIT                                
-00008f98  abort                                  
-00008f9e  init_CFH                               
-00008fa4  _system_pre_init                       
-00008fa8  _system_post_cinit                     
-00008faa  ISR_TB0_CCR0                           
-0000900a  ADC_ISR                                
-00009064  BCL_UART_ISR                           
-000090a0  _c_int00_noargs_mpu                    
-000090c0  ISR_RTC                                
-000090da  WIFI_UART_ISR                          
-000090f0  __TI_ISR_TRAP                          
+00008876  __TI_decompress_lzss                   
+00008964  __TI_printfi_minimal                   
+00008b0a  __TI_auto_init_nobinit_nopinit_hold_wdt
+00008b74  UART_BCL_Init                          
+00008bb4  __memcpy_far                           
+00008bf4  __TI_zero_init_nomemset                
+00008c32  init_RGB                               
+00008c70  __mpu_init                             
+00008cac  __TI_decompress_none                   
+00008ce8  init_Sensors                           
+00008d22  set_RGB                                
+00008d5a  sprintf                                
+00008d92  UART_BCL_SendCharArray                 
+00008dc0  UART_WIFI_Init                         
+00008dec  init_ThermC                            
+00008e18  init_Clock_System                      
+00008e3e  init_30sTimer                          
+00008e62  init_Servo                             
+00008e86  set_Servo                              
+00008eaa  memccpy                                
+00008ee4  __mspabi_mpyi_f5hw                     
+00008efc  __mspabi_divu                          
+00008efc  __mspabi_remu                          
+00008f12  memset                                 
+00008f26  set_PilotV                             
+00008f4c  memcpy                                 
+00008f5e  set_Ignite                             
+00008f6e  FlameDetect                            
+00008f7c  init_ADC_HardwareTimer                 
+00008f8a  init_PilotV                            
+00008f98  strlen                                 
+00008fa6  convert_sPoint                         
+00008fb2  abs                                    
+00008fbc  convert_Tmist                          
+00008fc6  init_Pilot                             
+00008fd0  CallForHeat                            
+00008fd8  C$$EXIT                                
+00008fd8  abort                                  
+00008fde  init_CFH                               
+00008fe4  _system_pre_init                       
+00008fe8  _system_post_cinit                     
+00008fea  ISR_TB0_CCR0                           
+0000904a  ADC_ISR                                
+000090a4  BCL_UART_ISR                           
+000090e0  _c_int00_noargs_mpu                    
+00009100  ISR_RTC                                
+0000911a  WIFI_UART_ISR                          
+00009130  __TI_ISR_TRAP                          
 0000ffce  __TI_int22                             
 0000ffd0  __TI_int23                             
 0000ffd2  __TI_int24                             

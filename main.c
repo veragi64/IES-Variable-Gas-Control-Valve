@@ -9,8 +9,8 @@
 #include "UART.h"
 #include <stdio.h>
 #include <ThermLUT.h>
-//#define FLAMEWAIT 300000000 /*300 seconds*/ 
-#define FLAMEWAIT 1000000 /*1 seconds*/ 
+#define FLAMEWAIT  30000000 /*300 seconds*/ 
+//#define FLAMEWAIT 1000000 /*1 seconds*/ 
 
             //This section of code was made with the help of Notebook LM//
 //-----------------------------------------------------------------------------------------//
@@ -94,14 +94,14 @@ int main(){
                 FlameTries = 1;
                 set_Ignite(1);
                 set_PilotV(1);
-                __delay_cycles(1000000); // 1s wait before checking flame
+                __delay_cycles(5000000); // 5s wait before checking flame
                 while(!FlameDetectV){
                     set_Ignite(0); //turn off
                     set_PilotV(0);
                     __delay_cycles(FLAMEWAIT);// Wait 5 minutes
                     set_Ignite(1); //try again
                     set_PilotV(1);
-                    __delay_cycles(1000000); // 1s wait before checking flame
+                    __delay_cycles(3000000); // 3s wait before checking flame
                     FlameTries++;
                     if(FlameTries >= 5){
                         STATE = 'S';
@@ -109,12 +109,22 @@ int main(){
                     }
                 }
                 if(FlameDetectV){
-                    set_Servo(100);
+                //STABLIZATION
+                set_Servo(100);
+                __delay_cycles(3000000);
+                if(FlameDetectV){
                     set_Ignite(0);
                     set_PilotV(0);
                     STATE = 'H';
                 }
-                
+                //BLOWOUT?
+                else{
+                    set_Servo(0);
+                    set_Ignite(0);
+                    set_PilotV(0);
+                    STATE = 'F';
+                }
+                }
                 break;
             //SAFETY STATE
             case 'S':
@@ -126,25 +136,31 @@ int main(){
                 break;
             //HEATING STATE
             case 'H':
-                if(1){
-                    set_RGB(0,0,255);
-                    _delay_cycles(500000);
-                    int valve = (SetP/10) - (TMist/10);
-                    if(valve > 20){
-                        valve = 20;
+                if(TMist < 1600){ //SAFETY TEMP THRESHOLD
+                    if(1){
+                        set_RGB(0,0,255);
+                        _delay_cycles(500000);
+                        int valve = (SetP/10) - (TMist/10);
+                        if(valve > 20){
+                            valve = 20;
+                        }
+                        if(valve < 0){
+                            valve = 0;
+                        }
+                        valve *= 5;
+                        set_Servo(valve);
                     }
-                    if(valve < 0){
-                        valve = 0;
+                    else{
+                        STATE = 'F';
                     }
-                    valve *= 5;
-                    set_Servo(valve);
+                    if(SetP < TMist + 5)
+                    {
+                        STATE = 'I';
+                    }
+                
                 }
-                else{
-                    STATE = 'F';
-                }
-                if(SetP < TMist + 5)
-                {
-                    STATE = 'I';
+                else {
+                    STATE = 'S';
                 }
                 break;
             //DEFAULT TO IDLE
